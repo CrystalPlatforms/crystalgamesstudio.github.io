@@ -134,26 +134,6 @@ export function Header() {
                 })}
 
                 <a
-                  href="https://wspolniak.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    "flex items-center justify-center gap-2",
-                    "px-4 py-3",
-                    "rounded-lg",
-                    "text-sm font-bold text-white",
-                    "bg-gradient-to-r from-purple-600 to-pink-600",
-                    "hover:from-purple-500 hover:to-pink-500",
-                    "transition-all duration-300",
-                    "shadow-lg shadow-purple-500/20",
-                    "hover:shadow-xl hover:shadow-purple-500/30"
-                  )}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Try Wspólniak <ExternalLink className="h-3 w-3" />
-                </a>
-
-                <a
                   href="https://github.com/CrystalGamesStudio"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -227,24 +207,6 @@ export function Header() {
                 </span>
               )
             })}
-
-            <a
-              href="https://wspolniak.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                "flex items-center gap-1.5",
-                "px-4 py-2 rounded-lg",
-                "text-sm font-bold text-white",
-                "bg-gradient-to-r from-purple-600 to-pink-600",
-                "hover:from-purple-500 hover:to-pink-500",
-                "transition-all duration-300",
-                "shadow-lg shadow-purple-500/20",
-                "hover:shadow-xl hover:shadow-purple-500/30"
-              )}
-            >
-              Try Wspólniak <ExternalLink className="h-3 w-3" />
-            </a>
 
             <a
               href="https://github.com/CrystalGamesStudio"

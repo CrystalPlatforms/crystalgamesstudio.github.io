@@ -1,6 +1,6 @@
 import { cn } from '../utils/helpers'
 import { glowAnimation } from '../utils/game-effects'
-import { Globe, Clock, Database, Trophy, Users, ExternalLink } from 'lucide-react'
+import { Globe, Clock, Database, Trophy, Users, ExternalLink, Terminal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 type Game = {
@@ -238,6 +238,14 @@ const apps = [
     link: "/products/wspolniak",
     icon: Users,
     openLink: "https://wspolniak.com",
+    openExternal: true
+  },
+  {
+    title: "ADM-CLI",
+    description: "Developer-focused CLI tool that automates environment setup and provides an AI-powered daily assistant for development workflows",
+    link: "/products/adm-cli",
+    icon: Terminal,
+    openLink: "https://github.com/MrCrypto-star/ADM-CLI",
     openExternal: true
   }
 ]

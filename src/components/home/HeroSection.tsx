@@ -82,24 +82,6 @@ export function HeroSection() {
                                         </a>
                                     )}
                                 </div>
-                                <div className="mt-3 sm:mt-0">
-                                    <a
-                                        href="https://wspolniak.com"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={cn(
-                                            "w-full flex items-center justify-center gap-2 px-8 py-3 text-base font-medium",
-                                            "bg-gradient-to-r from-purple-500 to-pink-500",
-                                            "text-white rounded-lg transform transition-all",
-                                            pixelBorder,
-                                            gameButton,
-                                            "hover:from-purple-600 hover:to-pink-600",
-                                            "md:py-4 md:text-lg md:px-10"
-                                        )}
-                                    >
-                                        Try Wspólniak <ExternalLink className="h-4 w-4" />
-                                    </a>
-                                </div>
                             </div>
                         </div>
                     </main>
