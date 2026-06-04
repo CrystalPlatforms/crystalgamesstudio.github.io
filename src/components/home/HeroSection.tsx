@@ -3,7 +3,6 @@ import { ContentData } from '../../types/content'
 import { cn } from '../../utils/helpers'
 import { pulseAnimation, pixelBorder, gameButton, neonText } from '../../utils/game-effects'
 import { Link } from 'react-router-dom'
-import { ExternalLink } from 'lucide-react'
 
 export function HeroSection() {
     const { hero } = useContentData() as ContentData
