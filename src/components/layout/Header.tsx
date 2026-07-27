@@ -2,7 +2,7 @@ import { useContentData } from '../../hooks/useContentData'
 import { ContentData } from '../../types/content'
 import { getIconComponent } from '../../utils/helpers'
 import { useState, type ComponentType } from 'react'
-import { Menu, X, Home, Package, User, Mail, Github } from 'lucide-react'
+import { Menu, X, Home, Package, Mail, Info, Github } from 'lucide-react'
 import { cn } from '../../utils/helpers'
 import { glowAnimation, pixelBorder } from '../../utils/game-effects'
 import { Link } from 'react-router-dom'
@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 const navIconMap: Record<string, ComponentType<{ className?: string }>> = {
   'Home': Home,
   'Products': Package,
-  'Profile': User,
+  'About': Info,
   'Contact': Mail,
 }
 

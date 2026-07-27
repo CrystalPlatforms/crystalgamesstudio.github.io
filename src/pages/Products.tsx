@@ -1,6 +1,6 @@
 import { cn } from '../utils/helpers'
 import { glowAnimation } from '../utils/game-effects'
-import { Globe, Clock, Database, Trophy, Users, ExternalLink, Terminal } from 'lucide-react'
+import { Globe, Clock, Trophy, Users, ExternalLink, Terminal, SquareTerminal } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 type Game = {
@@ -215,14 +215,6 @@ const apps = [
     icon: Globe
   },
   {
-    title: "Librus API",
-    description: "API service for Librus integration",
-    imageUrl: "/images/librus-api-pic.png",
-    link: "/librus-api",
-    icon: Database,
-    buttonText: "Check Out"
-  },
-  {
     title: "ExSize",
     description: "Family task management with gamification — motivate children through tasks, rewards and virtual currency",
     imageUrl: "/images/exsize-preview.png",
@@ -246,6 +238,14 @@ const apps = [
     link: "/products/adm-cli",
     icon: Terminal,
     openLink: "https://github.com/MrCrypto-star/ADM-CLI",
+    openExternal: true
+  },
+  {
+    title: "umux",
+    description: "Open-source terminal workspace manager for Ubuntu (Wayland) — persistent project workspaces, split panels, and desktop notifications when AI CLI tasks finish.",
+    link: "/products/umux",
+    icon: SquareTerminal,
+    openLink: "https://github.com/CrystalGamesStudio/umux",
     openExternal: true
   }
 ]
