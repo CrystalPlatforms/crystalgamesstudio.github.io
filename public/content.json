@@ -45,7 +45,7 @@
       {
         "icon": "Globe",
         "title": "Powerful Apps",
-        "description": "EgraTor Browser combines modern Electron technology with neumorphism design, delivering a beautiful and functional browsing experience"
+        "description": "We build modern desktop and web applications — from terminal workspace managers to family tools — combining clean, elegant design with real, everyday usefulness."
       },
       {
         "icon": "Zap",
@@ -72,13 +72,6 @@
         "buttonLink": "/coin-collector"
       },
       {
-        "icon": "Globe",
-        "imageUrl": "/images/EgraTor-card image.png",
-        "title": "EgraTor Browser",
-        "buttonText": "Learn More",
-        "buttonLink": "/egrator"
-      },
-      {
         "icon": "Star",
         "title": "More Coming Soon",
         "buttonText": "View All",
@@ -92,11 +85,6 @@
       {
         "icon": "ThumbsUp",
         "quote": "School's Out! is addictively fun and challenging! The unique mechanics keep me coming back.",
-        "rating": 5
-      },
-      {
-        "icon": "Star",
-        "quote": "EgraTor Browser has become my go-to browser. Beautiful design and great functionality!",
         "rating": 5
       },
       {
@@ -248,51 +236,6 @@
         ]
       },
       {
-        "name": "Apps",
-        "items": [
-          {
-            "question": "What is EgraTor Browser?",
-            "answer": "EgraTor is a modern desktop browser built on Electron and Chromium, featuring a beautiful neumorphism design and powerful tools for productivity and gaming."
-          },
-          {
-            "question": "How can I download EgraTor Browser?",
-            "answer": "Visit our EgraTor page (/egrator) to download the latest release directly from GitHub. Available for Windows, macOS, and Linux operating systems."
-          },
-          {
-            "question": "Is EgraTor Browser free?",
-            "answer": "Yes, EgraTor Browser is completely free and open-source. You can download and use it without any cost or subscription."
-          },
-          {
-            "question": "What features does EgraTor Browser have?",
-            "answer": "EgraTor includes AI Assistant, password manager, bookmarks, downloads, notes, split view, extensions support, and many productivity tools. Check the EgraTor page for full feature list."
-          },
-          {
-            "question": "Does EgraTor work on all operating systems?",
-            "answer": "EgraTor is available for Windows, macOS, and Linux. Visit the EgraTor download page to get the version for your operating system."
-          },
-          {
-            "question": "Is my data secure with EgraTor?",
-            "answer": "EgraTor uses electron-store for secure local data storage. Your passwords, bookmarks, and personal data are stored locally on your device and never transmitted to external servers."
-          },
-          {
-            "question": "Can I sync data across devices?",
-            "answer": "Currently, EgraTor stores data locally on each device. Cloud sync features may be added in future updates based on user feedback and demand."
-          },
-          {
-            "question": "How do I install extensions in EgraTor?",
-            "answer": "EgraTor supports extensions similar to Chromium browsers. You can install extensions through the Extensions menu in the right panel."
-          },
-          {
-            "question": "Does EgraTor support developer tools?",
-            "answer": "Yes! Press F12 or use the Dev Mode action to access developer tools for web development and debugging."
-          },
-          {
-            "question": "Will you release more desktop apps?",
-            "answer": "We're always exploring new ideas and technologies. Stay connected with us to be the first to know about new application releases!"
-          }
-        ]
-      },
-      {
         "name": "General",
         "items": [
           {
@@ -380,6 +323,23 @@
           {
             "text": "Upcoming Titles",
             "url": ""
+          }
+        ]
+      },
+      {
+        "title": "Apps",
+        "links": [
+          {
+            "text": "ExSize",
+            "url": "/products/exsize"
+          },
+          {
+            "text": "Wspolniak",
+            "url": "/products/wspolniak"
+          },
+          {
+            "text": "ADM-CLI",
+            "url": "/products/adm-cli"
           }
         ]
       },

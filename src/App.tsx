@@ -8,7 +8,6 @@ import { SocialProofSection } from './components/home/SocialProofSection'
 import { Footer } from './components/layout/Footer'
 import { GoodBuySection } from './components/home/GoodBuySection'
 import { Products } from './pages/Products'
-import { Egrator } from './pages/Egrator'
 import { Exsize } from './pages/Exsize'
 import { Wspolniak } from './pages/Wspolniak'
 import { AdmCli } from './pages/AdmCli'
@@ -45,7 +44,6 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/games" element={<Navigate to="/products" replace />} />
           <Route path="/apps" element={<Navigate to="/products" replace />} />
-          <Route path="/egrator" element={<Egrator />} />
           <Route path="/products/exsize" element={<Exsize />} />
           <Route path="/products/wspolniak" element={<Wspolniak />} />
           <Route path="/products/adm-cli" element={<AdmCli />} />

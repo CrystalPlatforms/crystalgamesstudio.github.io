@@ -1,33 +1,76 @@
 import { cn } from '../utils/helpers'
 import { glowAnimation } from '../utils/game-effects'
-import { Globe, Clock, Trophy, Users, ExternalLink, Terminal, SquareTerminal } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { ExternalLink, Github, AppWindow } from 'lucide-react'
 
-type Game = {
-  title: string;
-  imageUrl: string;
-  review: string;
-  link: string;
+type Product = {
+  title: string
+  imageUrl?: string
+  description: string
+  // Internal link to the product page (used by the "More" button,
+  // or as the single main button when there is no openLink).
+  link: string
+  // External link — when present, renders the "Open" button (GitHub/exsize/wspolniak etc.).
+  openLink?: string
+  // Label of the single main button shown when there is no openLink (e.g. "Play Now", "Learn More").
+  buttonText?: string
 }
 
-const games: Game[] = [
+const apps: Product[] = [
+  {
+    title: "ExSize",
+    imageUrl: "/images/exsize-preview.png",
+    description: "Family task management with gamification — motivate children through tasks, rewards and virtual currency",
+    link: "/products/exsize",
+    openLink: "https://exsize.pages.dev",
+  },
+  {
+    title: "Wspolniak",
+    imageUrl: "/images/wspolniak-preview.png",
+    description: "A latest working app from Crystal Studio, Open-Source, so you can Self-Host it.",
+    link: "/products/wspolniak",
+    openLink: "https://wspolniak.com",
+  },
+  {
+    title: "ADM-CLI",
+    imageUrl: "/images/adm-preview.png",
+    description: "Developer-focused CLI tool that automates environment setup and provides an AI-powered daily assistant for development workflows",
+    link: "/products/adm-cli",
+    openLink: "https://github.com/MrCrypto-star/ADM-CLI",
+  },
+  {
+    title: "umux",
+    imageUrl: "/images/umux-preview.png",
+    description: "Open-source terminal workspace manager for Ubuntu (Wayland) — persistent project workspaces, split panels, and desktop notifications when AI CLI tasks finish.",
+    link: "/products/umux",
+    openLink: "https://github.com/CrystalGamesStudio/umux",
+  },
+]
+
+const games: Product[] = [
   {
     title: "School's Out!",
     imageUrl: "/images/schoolsout.png",
-    review: "Amazing arcade game! Engaging gameplay and unique mechanics make it impossible to put down!",
-    link: "/schools-out"
+    description: "Amazing arcade game! Engaging gameplay and unique mechanics make it impossible to put down!",
+    link: "/schools-out",
+    buttonText: "Play Now",
   },
   {
     title: "Coin Collector",
     imageUrl: "/images/coincollector.png",
-    review: "Exciting coin-collecting adventure with addictive gameplay and challenging levels. Can you collect them all?",
-    link: "/coin-collector"
-  }
+    description: "Exciting coin-collecting adventure with addictive gameplay and challenging levels. Can you collect them all?",
+    link: "/coin-collector",
+    buttonText: "Play Now",
+  },
 ]
 
-function GameCard({ game }: { game: Game }) {
+// Unified card for both games and apps — same size, same style.
+function ProductCard({ product }: { product: Product }) {
+  const isGithub = !!product.openLink && product.openLink.includes('github.com')
+
   return (
     <div className={cn(
+      "flex flex-col h-full",
       "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
       "rounded-xl overflow-hidden",
       "border border-indigo-500/30",
@@ -35,130 +78,77 @@ function GameCard({ game }: { game: Game }) {
       "transition-all duration-300 hover:scale-105",
       "hover:shadow-xl hover:shadow-indigo-500/30"
     )}>
-      <h3 className={cn(
-        "text-2xl font-bold text-center py-4",
-        "bg-gradient-to-r from-indigo-400 to-purple-400",
-        "bg-clip-text text-transparent",
-        glowAnimation,
-        "animate-floating"
-      )}>
-        {game.title}
-      </h3>
-      
-      <div className="relative aspect-video">
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-50" />
-        <img
-          src={game.imageUrl}
-          alt={game.title}
-          className="w-full h-full object-cover"
-        />
+      {/* Image / placeholder — always the same aspect ratio so every card is identical in size */}
+      <div className="relative aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+        {product.imageUrl ? (
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <AppWindow className="h-16 w-16 text-indigo-400/40" />
+        )}
       </div>
-      
-      <div className="p-6">
-        <p className={cn(
-          "text-indigo-200 text-center",
-          "italic"
-        )}>
-          "{game.review}"
-        </p>
-        
-        <a
-          href={game.link}
-          className={cn(
-            "mt-4 block w-full text-center",
-            "py-2 px-4 rounded-lg",
-            "bg-gradient-to-r from-indigo-600 to-purple-600",
-            "text-white font-medium",
-            "hover:from-indigo-500 hover:to-purple-500",
-            "transition-all duration-300",
-            "shadow-lg shadow-indigo-500/20",
-            "hover:shadow-xl hover:shadow-indigo-500/30"
-          )}
-        >
-          Play Now
-        </a>
-      </div>
-    </div>
-  )
-}
 
-function AppCard({ app }: { app: { title: string; description: string; imageUrl?: string; link: string; icon?: React.ComponentType<{ className?: string }>; buttonText?: string; openLink?: string; openExternal?: boolean } }) {
-  const IconComponent = app.icon || Globe
-  return (
-    <div className={cn(
-      "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
-      "rounded-xl overflow-hidden",
-      "border border-indigo-500/30",
-      "shadow-lg shadow-indigo-500/20",
-      "transition-all duration-300 hover:scale-105",
-      "hover:shadow-xl hover:shadow-indigo-500/30",
-      "p-6"
-    )}>
-      <div className="flex items-center space-x-4 mb-4">
-        <div className={cn(
-          "p-3 rounded-lg",
-          "bg-gradient-to-br from-indigo-600 to-purple-600",
-          "shadow-lg shadow-indigo-500/30"
-        )}>
-          <IconComponent className="h-6 w-6 text-white" />
-        </div>
-        <h2 className={cn(
-          "text-2xl font-bold",
+      {/* Body */}
+      <div className="flex flex-col flex-grow p-6">
+        <h3 className={cn(
+          "text-2xl font-bold mb-3",
           "bg-gradient-to-r from-indigo-400 to-purple-400",
           "bg-clip-text text-transparent",
           glowAnimation
         )}>
-          {app.title}
-        </h2>
-      </div>
+          {product.title}
+        </h3>
 
-      <p className={cn(
-        "text-indigo-200 mb-4",
-        "leading-relaxed"
-      )}>
-        {app.description}
-      </p>
-
-      {app.imageUrl && (
-        <div className={cn(
-          "aspect-video bg-gray-800 rounded-lg",
-          "border border-indigo-500/30",
-          "overflow-hidden mb-4",
-          "relative"
+        <p className={cn(
+          "text-indigo-200 leading-relaxed mb-4"
         )}>
-          <img
-            src={app.imageUrl}
-            alt={app.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      )}
+          {product.description}
+        </p>
 
-      {app.openLink ? (
-        <div className="flex gap-3">
-          {app.openExternal ? (
-            <a
-              href={app.openLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(
-                "flex-1 flex items-center justify-center gap-2",
-                "py-2 px-4 rounded-lg",
-                "bg-gradient-to-r from-indigo-600 to-purple-600",
-                "text-white font-medium",
-                "hover:from-indigo-500 hover:to-purple-500",
-                "transition-all duration-300",
-                "shadow-lg shadow-indigo-500/20",
-                "hover:shadow-xl hover:shadow-indigo-500/30"
-              )}
-            >
-              Open <ExternalLink className="h-4 w-4" />
-            </a>
+        {/* Buttons — pinned to the bottom so every card in a row lines up */}
+        <div className="mt-auto">
+          {product.openLink ? (
+            <div className="flex gap-3">
+              <a
+                href={product.openLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  "flex-1 flex items-center justify-center gap-2",
+                  "py-2 px-4 rounded-lg",
+                  "bg-gradient-to-r from-indigo-600 to-purple-600",
+                  "text-white font-medium",
+                  "hover:from-indigo-500 hover:to-purple-500",
+                  "transition-all duration-300",
+                  "shadow-lg shadow-indigo-500/20",
+                  "hover:shadow-xl hover:shadow-indigo-500/30"
+                )}
+              >
+                {isGithub ? <Github className="h-4 w-4" /> : <ExternalLink className="h-4 w-4" />}
+                Open
+              </a>
+              <Link
+                to={product.link}
+                className={cn(
+                  "flex-1 block text-center",
+                  "py-2 px-4 rounded-lg",
+                  "border border-indigo-500/50 bg-indigo-900/30",
+                  "text-indigo-200 font-medium",
+                  "hover:bg-indigo-800/50",
+                  "transition-all duration-300"
+                )}
+              >
+                More
+              </Link>
+            </div>
           ) : (
             <Link
-              to={app.openLink}
+              to={product.link}
               className={cn(
-                "flex-1 block text-center",
+                "w-full block text-center",
                 "py-2 px-4 rounded-lg",
                 "bg-gradient-to-r from-indigo-600 to-purple-600",
                 "text-white font-medium",
@@ -168,87 +158,14 @@ function AppCard({ app }: { app: { title: string; description: string; imageUrl?
                 "hover:shadow-xl hover:shadow-indigo-500/30"
               )}
             >
-              Open
+              {product.buttonText || "Learn More"}
             </Link>
           )}
-          <Link
-            to={app.link}
-            className={cn(
-              "flex-1 block text-center",
-              "py-2 px-4 rounded-lg",
-              "border border-indigo-500/50 bg-indigo-900/30",
-              "text-indigo-200 font-medium",
-              "hover:bg-indigo-800/50",
-              "transition-all duration-300"
-            )}
-          >
-            More
-          </Link>
         </div>
-      ) : (
-        <Link
-          to={app.link}
-          className={cn(
-            "w-full block text-center",
-            "py-2 px-4 rounded-lg",
-            "bg-gradient-to-r from-indigo-600 to-purple-600",
-            "text-white font-medium",
-            "hover:from-indigo-500 hover:to-purple-500",
-            "transition-all duration-300",
-            "shadow-lg shadow-indigo-500/20",
-            "hover:shadow-xl hover:shadow-indigo-500/30"
-          )}
-        >
-          {app.buttonText || "Learn More"}
-        </Link>
-      )}
+      </div>
     </div>
   )
 }
-
-const apps = [
-  {
-    title: "EgraTor",
-    description: "Multi-functional browser for games and more",
-    imageUrl: "/images/EgraTor-card image.png",
-    link: "/egrator",
-    icon: Globe
-  },
-  {
-    title: "ExSize",
-    description: "Family task management with gamification — motivate children through tasks, rewards and virtual currency",
-    imageUrl: "/images/exsize-preview.png",
-    link: "/products/exsize",
-    icon: Trophy,
-    openLink: "https://exsize.pages.dev",
-    openExternal: true
-  },
-  {
-    title: "Wspolniak",
-    description: "A new app from CrystalGames Studio — coming soon",
-    imageUrl: "/images/wspolniak-preview.png",
-    link: "/products/wspolniak",
-    icon: Users,
-    openLink: "https://wspolniak.com",
-    openExternal: true
-  },
-  {
-    title: "ADM-CLI",
-    description: "Developer-focused CLI tool that automates environment setup and provides an AI-powered daily assistant for development workflows",
-    link: "/products/adm-cli",
-    icon: Terminal,
-    openLink: "https://github.com/MrCrypto-star/ADM-CLI",
-    openExternal: true
-  },
-  {
-    title: "umux",
-    description: "Open-source terminal workspace manager for Ubuntu (Wayland) — persistent project workspaces, split panels, and desktop notifications when AI CLI tasks finish.",
-    link: "/products/umux",
-    icon: SquareTerminal,
-    openLink: "https://github.com/CrystalGamesStudio/umux",
-    openExternal: true
-  }
-]
 
 export function Products() {
   return (
@@ -263,78 +180,8 @@ export function Products() {
           Our Products
         </h1>
 
-        {/* Games Section */}
+        {/* Apps Section — shown first */}
         <div className="mb-16">
-          <h2 className={cn(
-            "text-3xl font-bold text-center mb-8",
-            "bg-clip-text text-transparent",
-            "bg-gradient-to-r from-indigo-400 to-purple-400"
-          )}>
-            Games
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {games.map((game, index) => (
-              <GameCard key={index} game={game} />
-            ))}
-            
-            <div className={cn(
-              "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
-              "rounded-xl overflow-hidden",
-              "border border-indigo-500/30",
-              "shadow-lg shadow-indigo-500/20",
-              "transition-all duration-300 hover:scale-105",
-              "hover:shadow-xl hover:shadow-indigo-500/30"
-            )}>
-              <h3 className={cn(
-                "text-2xl font-bold text-center py-4",
-                "bg-gradient-to-r from-indigo-400 to-purple-400",
-                "bg-clip-text text-transparent",
-                glowAnimation,
-                "animate-floating"
-              )}>
-                Coming Soon
-              </h3>
-              
-              <div className={cn(
-                "relative aspect-video",
-                "bg-gradient-to-br from-gray-800 to-gray-900",
-                "flex items-center justify-center"
-              )}>
-                <p className={cn(
-                  "text-indigo-300 text-xl font-medium"
-                )}>
-                  Coming Soon
-                </p>
-              </div>
-              
-              <div className="p-6">
-                <p className={cn(
-                  "text-indigo-200 text-center",
-                  "italic mb-4"
-                )}>
-                  "New games are on the way!"
-                </p>
-                
-                <button
-                  disabled
-                  className={cn(
-                    "w-full",
-                    "py-2 px-4 rounded-lg",
-                    "bg-gray-700",
-                    "text-gray-400 font-medium",
-                    "cursor-not-allowed",
-                    "transition-all duration-300"
-                  )}
-                >
-                  Coming Soon
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Apps Section */}
-        <div>
           <h2 className={cn(
             "text-3xl font-bold text-center mb-8",
             "bg-clip-text text-transparent",
@@ -342,70 +189,29 @@ export function Products() {
           )}>
             Apps
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {apps.map((app, index) => (
-              <AppCard key={index} app={app} />
+              <ProductCard key={index} product={app} />
             ))}
-            
-            <div className={cn(
-              "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
-              "rounded-xl overflow-hidden",
-              "border border-indigo-500/30",
-              "shadow-lg shadow-indigo-500/20",
-              "transition-all duration-300 hover:scale-105",
-              "hover:shadow-xl hover:shadow-indigo-500/30",
-              "p-6"
-            )}>
-              <div className="flex items-center space-x-4 mb-4">
-                <div className={cn(
-                  "p-3 rounded-lg",
-                  "bg-gradient-to-br from-indigo-600 to-purple-600",
-                  "shadow-lg shadow-indigo-500/30"
-                )}>
-                  <Clock className="h-6 w-6 text-white" />
-                </div>
-                <h2 className={cn(
-                  "text-2xl font-bold",
-                  "bg-gradient-to-r from-indigo-400 to-purple-400",
-                  "bg-clip-text text-transparent",
-                  glowAnimation
-                )}>
-                  Coming Soon
-                </h2>
-              </div>
-              
-              <div className={cn(
-                "aspect-video bg-gray-800 rounded-lg",
-                "border border-indigo-500/30",
-                "flex items-center justify-center",
-                "mb-4",
-                "bg-gradient-to-br from-gray-800 to-gray-900"
-              )}>
-                <p className={cn(
-                  "text-indigo-300 text-xl font-medium"
-                )}>
-                  Coming Soon
-                </p>
-              </div>
-              
-              <button
-                disabled
-                className={cn(
-                  "w-full",
-                  "py-2 px-4 rounded-lg",
-                  "bg-gray-700",
-                  "text-gray-400 font-medium",
-                  "cursor-not-allowed",
-                  "transition-all duration-300"
-                )}
-              >
-                Coming Soon
-              </button>
-            </div>
+          </div>
+        </div>
+
+        {/* Games Section — shown second */}
+        <div>
+          <h2 className={cn(
+            "text-3xl font-bold text-center mb-8",
+            "bg-clip-text text-transparent",
+            "bg-gradient-to-r from-indigo-400 to-purple-400"
+          )}>
+            Games
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {games.map((game, index) => (
+              <ProductCard key={index} product={game} />
+            ))}
           </div>
         </div>
       </main>
     </div>
   )
 }
-

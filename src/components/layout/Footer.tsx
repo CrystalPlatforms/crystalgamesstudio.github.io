@@ -14,7 +14,7 @@ export function Footer() {
     <footer className="bg-gradient-to-b from-gray-900 to-black text-indigo-200">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 xl:col-span-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 xl:col-span-3">
             {footer.columns.map((column, index) => (
               <div 
                 key={index}

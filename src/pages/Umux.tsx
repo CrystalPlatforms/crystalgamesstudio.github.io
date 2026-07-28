@@ -8,7 +8,6 @@ import {
   Bell,
   Plug,
   Download,
-  Clock,
   CheckCircle,
   Sparkles,
   Cpu,
@@ -32,15 +31,6 @@ export function Umux() {
               )}>
                 <SquareTerminal className="h-12 w-12 text-white" />
               </div>
-            </div>
-            <div className={cn(
-              "inline-flex items-center gap-2 mb-4",
-              "px-3 py-1 rounded-full",
-              "border border-indigo-500/40 bg-indigo-900/40",
-              "text-indigo-200 text-sm font-medium"
-            )}>
-              <Clock className="h-4 w-4" />
-              Status: Planning
             </div>
             <h1 className={cn(
               "text-4xl sm:text-5xl font-bold mb-4",

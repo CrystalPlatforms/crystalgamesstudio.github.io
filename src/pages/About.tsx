@@ -201,8 +201,8 @@ export function About() {
                     Desktop Applications
                   </h3>
                   <p className="text-indigo-300">
-                    We develop modern desktop applications, such as EgraTor Browser - 
-                    a browser built on Electron that combines functionality with elegant design.
+                    We develop modern desktop applications — including umux, an open-source
+                    terminal workspace manager for Ubuntu — combining native performance with elegant design.
                   </p>
                 </div>
               </div>

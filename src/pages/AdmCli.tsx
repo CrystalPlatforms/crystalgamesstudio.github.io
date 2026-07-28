@@ -24,15 +24,6 @@ export function AdmCli() {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="flex justify-center mb-4">
-              <div className={cn(
-                "p-4 rounded-xl",
-                "bg-gradient-to-br from-indigo-600 to-purple-600",
-                "shadow-lg shadow-indigo-500/30"
-              )}>
-                <Terminal className="h-12 w-12 text-white" />
-              </div>
-            </div>
             <h1 className={cn(
               "text-4xl sm:text-5xl font-bold mb-4",
               "bg-clip-text text-transparent",
@@ -45,7 +36,7 @@ export function AdmCli() {
               "text-indigo-300 text-lg",
               "max-w-2xl mx-auto"
             )}>
-              Developer-focused CLI tool that automates environment setup and provides an AI-powered daily assistant for development workflows.
+              A full-screen terminal UI (TUI) for developers — automate new-machine setup, chat with a GLM-powered AI assistant, and manage GitHub &amp; GitLab, all from a single <code className="bg-gray-800 px-1.5 py-0.5 rounded text-indigo-200">adm</code> command on macOS, Linux, and Windows.
             </p>
           </div>
 
@@ -86,6 +77,108 @@ export function AdmCli() {
             </a>
           </div>
 
+          {/* Installation */}
+          <div className="mb-12">
+            <h2 className={cn(
+              "text-3xl font-bold text-center mb-4",
+              "bg-clip-text text-transparent",
+              "bg-gradient-to-r from-indigo-400 to-purple-400"
+            )}>
+              Installation
+            </h2>
+            <p className="text-indigo-300 mb-8 text-center max-w-2xl mx-auto">
+              Requires <span className="text-indigo-200 font-medium">Node.js 18+</span>. The curl and PowerShell installers check for Node.js and guide you if it&apos;s missing.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* npm */}
+              <div className={cn(
+                "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
+                "rounded-xl p-6",
+                "border border-indigo-500/30",
+                "shadow-lg shadow-indigo-500/20"
+              )}>
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600">
+                    <Package className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-indigo-200">npm</h3>
+                </div>
+                <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre-wrap break-all">
+                  npm install -g @crystalgames/adm
+                </code>
+              </div>
+
+              {/* Homebrew */}
+              <div className={cn(
+                "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
+                "rounded-xl p-6",
+                "border border-indigo-500/30",
+                "shadow-lg shadow-indigo-500/20"
+              )}>
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600">
+                    <Package className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-indigo-200">Homebrew (macOS/Linux)</h3>
+                </div>
+                <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre">
+{`brew tap CrystalGamesStudio/tap
+brew install CrystalGamesStudio/tap/adm`}
+                </code>
+              </div>
+
+              {/* curl */}
+              <div className={cn(
+                "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
+                "rounded-xl p-6",
+                "border border-indigo-500/30",
+                "shadow-lg shadow-indigo-500/20"
+              )}>
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600">
+                    <Terminal className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-indigo-200">macOS / Linux (curl)</h3>
+                </div>
+                <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre-wrap break-all">
+                  curl -fsSL https://raw.githubusercontent.com/CrystalGamesStudio/ADM-CLI/main/scripts/installer.sh | sh
+                </code>
+              </div>
+
+              {/* Windows PowerShell */}
+              <div className={cn(
+                "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
+                "rounded-xl p-6",
+                "border border-indigo-500/30",
+                "shadow-lg shadow-indigo-500/20"
+              )}>
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600">
+                    <Terminal className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-indigo-200">Windows (PowerShell)</h3>
+                </div>
+                <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre-wrap break-all">
+                  irm https://raw.githubusercontent.com/CrystalGamesStudio/ADM-CLI/main/scripts/install.ps1 | iex
+                </code>
+              </div>
+            </div>
+
+            {/* Launch */}
+            <div className={cn(
+              "bg-gradient-to-b from-gray-900 to-gray-950",
+              "rounded-xl p-6 mt-6",
+              "border border-indigo-500/20",
+              "font-mono text-sm"
+            )}>
+              <div className="flex items-center space-x-2 mb-3">
+                <Terminal className="h-5 w-5 text-indigo-400" />
+                <span className="text-indigo-300 font-sans font-medium">Launch the TUI</span>
+              </div>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm</span> <span className="text-gray-500"># Start the full-screen terminal UI</span></p>
+            </div>
+          </div>
+
           {/* Core Features */}
           <div className="mb-12">
             <h2 className={cn(
@@ -108,7 +201,7 @@ export function AdmCli() {
                   </div>
                   <h3 className="text-xl font-bold text-indigo-200">One-Command Setup</h3>
                 </div>
-                <p className="text-indigo-300 text-sm">Run <code className="bg-gray-800 px-2 py-0.5 rounded text-indigo-200">adm setup</code> and get Node.js, pnpm, git, SSH keys, and dotfiles configured automatically. From hours to minutes.</p>
+                <p className="text-indigo-300 text-sm">Run <code className="bg-gray-800 px-2 py-0.5 rounded text-indigo-200">/download</code> in the TUI and get Node.js, pnpm, git, SSH keys, and dotfiles configured automatically. From hours to minutes.</p>
               </div>
               <div className={cn(
                 "bg-gradient-to-b from-indigo-900/50 to-purple-900/50",
@@ -285,12 +378,13 @@ export function AdmCli() {
               <span className="text-indigo-300 font-sans font-medium">Commands Preview</span>
             </div>
             <div className="space-y-2">
-              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm setup</span> <span className="text-gray-500"># Interactive dev environment setup</span></p>
-              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm connect github</span> <span className="text-gray-500"># Link GitHub account</span></p>
-              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm pr list</span> <span className="text-gray-500"># List open pull requests</span></p>
-              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm commit suggest</span> <span className="text-gray-500"># AI commit message</span></p>
-              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm ai "how to ..."</span> <span className="text-gray-500"># Ask AI assistant</span></p>
-              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm status</span> <span className="text-gray-500"># Git status + PRs + issues</span></p>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">adm</span> <span className="text-gray-500"># Launch the full-screen TUI</span></p>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">/ai "how do I ..."</span> <span className="text-gray-500"># One-off AI query (GLM)</span></p>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">/github</span> <span className="text-gray-500"># GitHub PRs, issues & commits</span></p>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">/download</span> <span className="text-gray-500"># Run the setup wizard</span></p>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">/theme cyberpunk</span> <span className="text-gray-500"># Switch theme (6 built-in)</span></p>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">/dotfiles</span> <span className="text-gray-500"># Sync dotfiles from your repo</span></p>
+              <p><span className="text-green-400">$</span> <span className="text-indigo-300">/upgrade</span> <span className="text-gray-500"># Check for and install updates</span></p>
             </div>
           </div>
 
