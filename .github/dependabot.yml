@@ -1,0 +1,32 @@
+# Dependabot configuration
+# - version updates: weekly checks for newer npm packages and GitHub Actions
+# - security updates: auto-opens a PR when a dependency has a known CVE
+#   (enabled separately in repo Settings → Code security → Dependabot security updates)
+version: 2
+updates:
+  # npm dependencies (root of the repo)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps"
+    # Keep major upgrades as separate, reviewable PRs.
+    # Minor + patch are grouped together to reduce noise.
+    groups:
+      patch-and-minor:
+        update-types:
+          - "patch"
+          - "minor"
+
+  # GitHub Actions used in .github/workflows/*
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
