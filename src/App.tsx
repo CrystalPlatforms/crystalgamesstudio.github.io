@@ -37,7 +37,7 @@ function App() {
   return (
     <HashRouter>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-gray-900">
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />

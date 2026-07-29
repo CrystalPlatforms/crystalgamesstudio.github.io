@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { readFileSync, readdirSync, statSync } from 'node:fs'
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import content from '../public/content.json'
 
@@ -126,5 +126,57 @@ describe('Rebrand guard — Crystal Studio (Faza 1)', () => {
       expect(header).toContain('github.com/CrystalGamesStudio')
       expect(admCli).toContain('CrystalGamesStudio/tap')
     })
+  })
+})
+
+// Rebrand guard — Faza 2: pełne logo „Crystal Studio" w nagłówku (issue #23).
+// Chroni przed regresją: nagłówek musi renderować pełne logo, a martwy
+// pusty plik crystal-icon.svg ma zniknąć.
+describe('Rebrand guard — pełne logo w nagłówku (Faza 2)', () => {
+  it('header renders the full logo asset (referenced in source + file exists and is non-empty)', () => {
+    const header = readFile('src/components/layout/Header.tsx')
+    expect(header).toContain('/images/CrystalLogo.png')
+
+    const stat = statSync('public/images/CrystalLogo.png')
+    expect(stat.size).toBeGreaterThan(0)
+  })
+
+  it('logo <img> has non-empty alt text for screen readers', () => {
+    const header = readFile('src/components/layout/Header.tsx')
+    expect(header).toContain('alt="Crystal Studio"')
+  })
+
+  it('logo is static — no hover expansion and no pulse/glow animation', () => {
+    const header = readFile('src/components/layout/Header.tsx')
+    expect(header).not.toContain('group-hover')
+    expect(header).not.toContain('glowAnimation')
+  })
+
+  it('favicon is referenced in index.html and the file exists', () => {
+    const html = readFile('index.html')
+    expect(html).toContain('href="/favicon.ico"')
+    expect(statSync('public/favicon.ico').size).toBeGreaterThan(0)
+  })
+
+  it('dead empty placeholder crystal-icon.svg is removed from assets', () => {
+    expect(existsSync('public/images/crystal-icon.svg')).toBe(false)
+  })
+})
+
+// Sekcja products na stronie głównej — chroni układ kart produktów.
+describe('Products showcase (sekcja products)', () => {
+  it('ExSize is listed before the "More Coming Soon" card', () => {
+    const titles = content.productsShowcase.items.map((i) => i.title)
+    const exsizeIndex = titles.indexOf('ExSize')
+    const comingSoonIndex = titles.indexOf('More Coming Soon')
+    expect(exsizeIndex).toBeGreaterThanOrEqual(0)
+    expect(comingSoonIndex).toBeGreaterThanOrEqual(0)
+    expect(exsizeIndex).toBeLessThan(comingSoonIndex)
+  })
+
+  it('ExSize card links to its product page', () => {
+    const exsize = content.productsShowcase.items.find((i) => i.title === 'ExSize')
+    expect(exsize).toBeDefined()
+    expect(exsize?.buttonLink).toBe('/products/exsize')
   })
 })

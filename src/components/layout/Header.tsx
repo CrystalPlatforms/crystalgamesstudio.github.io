@@ -1,11 +1,10 @@
 import { useContentData } from '../../hooks/useContentData'
 import { ContentData } from '../../types/content'
-import { getIconComponent } from '../../utils/helpers'
 import { useState, type ComponentType } from 'react'
 import { Menu, X, Home, Package, Mail, Info, Github } from 'lucide-react'
 import { cn } from '../../utils/helpers'
-import { glowAnimation, pixelBorder } from '../../utils/game-effects'
-import { Link } from 'react-router-dom'
+import { pixelBorder } from '../../utils/game-effects'
+import { Link, useLocation } from 'react-router-dom'
 
 const navIconMap: Record<string, ComponentType<{ className?: string }>> = {
   'Home': Home,
@@ -17,29 +16,21 @@ const navIconMap: Record<string, ComponentType<{ className?: string }>> = {
 export function Header() {
   const { header } = useContentData() as ContentData
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const isHome = useLocation().pathname === '/'
 
   if (!header) return null
 
-  const IconComponent = getIconComponent(header.icon)
-
   return (
-    <header className="bg-gray-900 border-b-2 border-indigo-500/30 relative">
+    <header className={cn(
+      "relative z-50",
+      !isHome && "bg-gradient-to-b from-indigo-900 via-purple-900 to-gray-900"
+    )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className={cn("flex justify-between items-center", isHome ? "-mt-5" : "py-3")}>
           <div className="flex items-center">
-            <Link to="/" className={cn("text-indigo-400 flex items-center group", glowAnimation)}>
+            <Link to="/" className="flex items-center">
               <span className="sr-only">{header.text}</span>
-              <IconComponent className="h-8 w-auto sm:h-10" />
-              <span className={cn(
-                "max-w-0 overflow-hidden whitespace-nowrap",
-                "group-hover:max-w-[200px] group-hover:ml-2",
-                "transition-all duration-500 ease-out",
-                "text-transparent bg-clip-text",
-                "bg-gradient-to-r from-indigo-400 to-purple-400",
-                "text-sm font-bold"
-              )}>
-                Crystal Studio
-              </span>
+              <img src="/images/CrystalLogo.png" alt="Crystal Studio" className={isHome ? "h-40 w-auto sm:h-60" : "h-20 w-auto sm:h-24"} />
             </Link>
           </div>
 
@@ -157,7 +148,13 @@ export function Header() {
             </div>
           </div>
 
-          <nav className="hidden md:flex md:items-center md:space-x-6">
+          <nav className={cn(
+            "hidden md:flex md:items-center md:gap-1",
+            "md:bg-gray-800/80 md:backdrop-blur-sm",
+            "md:rounded-full md:px-2 md:py-2",
+            "md:border md:border-indigo-500/20",
+            "md:shadow-lg md:shadow-indigo-500/20"
+          )}>
             {header.navItems.map((item, index) => {
               const NavIcon = navIconMap[item.text]
               return item.link ? (
