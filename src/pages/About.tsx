@@ -24,7 +24,7 @@ export function About() {
               "bg-gradient-to-r from-indigo-400 to-purple-400",
               glowAnimation
             )}>
-              About CrystalGames Studio
+              About Crystal Studio
             </h1>
             <p className={cn(
               "text-indigo-300 text-lg",
@@ -55,7 +55,7 @@ export function About() {
               "text-indigo-200 text-lg leading-relaxed",
               "mb-4"
             )}>
-              CrystalGames Studio was born from a passion for creating exceptional gaming and application experiences. 
+              Crystal Studio was born from a passion for creating exceptional gaming and application experiences. 
               Our goal is to combine innovative technological solutions with creative entertainment 
               that engages and inspires players around the world.
             </p>

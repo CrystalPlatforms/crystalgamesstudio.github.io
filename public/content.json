@@ -6,7 +6,7 @@
   },
   "header": {
     "icon": "Gem",
-    "text": "Crystal Games Studio",
+    "text": "Crystal Studio",
     "navItems": [
       {
         "text": "Home",
@@ -27,7 +27,8 @@
     ]
   },
   "hero": {
-    "headline": "Welcome to CrystalGames Studio",
+    "headline": "Welcome to",
+    "headlineAccent": "Crystal Studio",
     "subheadline": "Innovative games and cutting-edge apps that combine passion with technology. Explore our collection of web games and desktop applications.",
     "ctaText": "Explore Our Products",
     "ctaLink": "/products",
@@ -104,7 +105,7 @@
         "name": "Entertainment",
         "items": [
           {
-            "question": "What types of games does CrystalGames Studio create?",
+            "question": "What types of games does Crystal Studio create?",
             "answer": "We create a variety of web-based games including arcade adventures, puzzle games, and action-packed experiences. Our games focus on unique mechanics and engaging gameplay."
           },
           {
@@ -149,11 +150,11 @@
         "name": "About",
         "items": [
           {
-            "question": "What is CrystalGames Studio?",
-            "answer": "CrystalGames Studio is a game development company focused on creating innovative games and applications that combine passion with technology. We're dedicated to delivering unique gaming experiences."
+            "question": "What is Crystal Studio?",
+            "answer": "Crystal Studio is a game development company focused on creating innovative games and applications that combine passion with technology. We're dedicated to delivering unique gaming experiences."
           },
           {
-            "question": "When was CrystalGames Studio founded?",
+            "question": "When was Crystal Studio founded?",
             "answer": "We're a growing studio passionate about creating quality games and apps. Our team is committed to innovation and community engagement."
           },
           {
@@ -174,7 +175,7 @@
           },
           {
             "question": "Where are you located?",
-            "answer": "CrystalGames Studio operates as a digital-first company. We have a global reach and work with team members and players from around the world."
+            "answer": "Crystal Studio operates as a digital-first company. We have a global reach and work with team members and players from around the world."
           },
           {
             "question": "How can I stay updated with your latest news?",
@@ -239,7 +240,7 @@
         "name": "General",
         "items": [
           {
-            "question": "How can I contact CrystalGames Studio?",
+            "question": "How can I contact Crystal Studio?",
             "answer": "You can reach us through our contact page (/contact), via email, or through our social media channels on X and YouTube. We'd love to hear from you!"
           },
           {
@@ -290,7 +291,7 @@
     "ctaLink": "/products",
     "ctaIcon": "Gamepad2",
     "quote": {
-      "text": "CrystalGames Studio brings innovation and fun together in every product!",
+      "text": "Crystal Studio brings innovation and fun together in every product!",
       "icon": "Quote"
     }
   },
@@ -380,8 +381,8 @@
         "url": "https://www.youtube.com/@CrystalGamesStudio-l9z"
       }
     ],
-    "copyright": "CrystalGames Studio.",
-    "copyrightLink": "https://crystalgames.studio",
+    "copyright": "Crystal Studio.",
+    "copyrightLink": "https://crystal-studio.dev",
     "copyrightReserve": "All rights reserved"
   }
 }

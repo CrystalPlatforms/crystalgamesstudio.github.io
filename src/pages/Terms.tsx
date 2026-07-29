@@ -51,7 +51,7 @@ export function Terms() {
                 1. Acceptance of Terms
               </h2>
               <p className="text-indigo-200 leading-relaxed">
-                By accessing and using CrystalGames Studio games, applications, and services, you accept and agree 
+                By accessing and using Crystal Studio games, applications, and services, you accept and agree 
                 to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, 
                 please do not use this service.
               </p>
@@ -138,7 +138,7 @@ export function Terms() {
                 6. Intellectual Property
               </h2>
               <p className="text-indigo-200 leading-relaxed">
-                The service and its original content, features, and functionality are owned by CrystalGames Studio 
+                The service and its original content, features, and functionality are owned by Crystal Studio 
                 and are protected by international copyright, trademark, patent, trade secret, and other intellectual 
                 property laws.
               </p>
@@ -153,7 +153,7 @@ export function Terms() {
                 7. Disclaimer
               </h2>
               <p className="text-indigo-200 leading-relaxed">
-                The materials on CrystalGames Studio's services are provided on an 'as is' basis. CrystalGames Studio 
+                The materials on Crystal Studio's services are provided on an 'as is' basis. Crystal Studio 
                 makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, 
                 without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, 
                 or non-infringement of intellectual property or other violation of rights.
@@ -169,9 +169,9 @@ export function Terms() {
                 8. Limitations of Liability
               </h2>
               <p className="text-indigo-200 leading-relaxed">
-                In no event shall CrystalGames Studio or its suppliers be liable for any damages (including, without 
+                In no event shall Crystal Studio or its suppliers be liable for any damages (including, without 
                 limitation, damages for loss of data or profit, or due to business interruption) arising out of the use 
-                or inability to use the materials on CrystalGames Studio's services.
+                or inability to use the materials on Crystal Studio's services.
               </p>
             </section>
 

@@ -38,7 +38,7 @@ export function Header() {
                 "bg-gradient-to-r from-indigo-400 to-purple-400",
                 "text-sm font-bold"
               )}>
-                CrystalGames Studio
+                Crystal Studio
               </span>
             </Link>
           </div>

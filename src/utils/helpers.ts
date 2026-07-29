@@ -7,5 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getIconComponent(iconName: string) {
-  return (LucideIcons as any)[iconName] || LucideIcons.HelpCircle
+  const icons = LucideIcons as unknown as Record<string, typeof LucideIcons.HelpCircle>
+  return icons[iconName] || LucideIcons.HelpCircle
 }

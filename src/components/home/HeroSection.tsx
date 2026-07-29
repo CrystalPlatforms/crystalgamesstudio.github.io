@@ -36,10 +36,16 @@ export function HeroSection() {
                                 "sm:text-5xl md:text-6xl"
                             )}>
                                 <span className={cn(
-                                    "block xl:inline text-white/90",
+                                    "block text-white/90",
                                     pulseAnimation
                                 )}>
                                     {hero.headline}
+                                </span>
+                                <span className={cn(
+                                    "block text-white/90",
+                                    pulseAnimation
+                                )}>
+                                    {hero.headlineAccent}
                                 </span>
                             </h1>
                             <p className="mt-3 text-base text-indigo-200 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">

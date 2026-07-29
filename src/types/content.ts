@@ -17,6 +17,7 @@ export interface HeaderContent {
 
 export interface HeroContent {
   headline: string
+  headlineAccent: string
   subheadline: string
   ctaText: string
   ctaLink: string
