@@ -1,7 +1,7 @@
 import { cn } from '../utils/helpers'
 import { glowAnimation } from '../utils/game-effects'
 import { FileText } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export function Terms() {
   return (

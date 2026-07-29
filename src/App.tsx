@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router'
 import { Header } from './components/layout/Header'
 import { ScrollToTop } from './components/layout/ScrollToTop'
 import { HeroSection } from './components/home/HeroSection'

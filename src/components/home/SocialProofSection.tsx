@@ -10,7 +10,7 @@ import {
   floatAnimation,
   pixelCard
 } from '../../utils/game-effects'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export function SocialProofSection() {
   const { socialProof } = useContentData() as ContentData

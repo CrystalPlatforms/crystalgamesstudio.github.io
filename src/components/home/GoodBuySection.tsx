@@ -12,7 +12,7 @@ import {
   cyberpunkCard,
   neonText
 } from '../../utils/game-effects'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export function GoodBuySection() {
   const { goodBuy } = useContentData() as ContentData

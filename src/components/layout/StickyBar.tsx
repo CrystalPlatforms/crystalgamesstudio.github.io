@@ -2,7 +2,7 @@ import { useContentData } from '../../hooks/useContentData'
 import { cn, getIconComponent } from '../../utils/helpers'
 import { ContentData } from '../../types/content'
 import { glowAnimation } from '../../utils/game-effects'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 export function StickyBar() {
   const { stickyBar } = useContentData() as ContentData

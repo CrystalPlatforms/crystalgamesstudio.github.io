@@ -4,7 +4,7 @@ import { useState, type ComponentType } from 'react'
 import { Menu, X, Home, Package, Mail, Info, Github } from 'lucide-react'
 import { cn } from '../../utils/helpers'
 import { pixelBorder } from '../../utils/game-effects'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 
 const navIconMap: Record<string, ComponentType<{ className?: string }>> = {
   'Home': Home,
