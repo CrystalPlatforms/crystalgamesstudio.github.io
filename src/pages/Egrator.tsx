@@ -23,7 +23,7 @@ import {
 import { useState, useEffect } from 'react'
 
 // GitHub repository owner and name
-const GITHUB_REPO_OWNER = 'CrystalGamesStudio'
+const GITHUB_REPO_OWNER = 'CrystalPlatforms'
 const GITHUB_REPO_NAME = 'EgraTor'
 
 interface GitHubRelease {

@@ -120,10 +120,10 @@ describe('Rebrand guard — Crystal Studio (Faza 1)', () => {
       expect(offenders).toEqual([])
     })
 
-    it('external identifiers (GitHub/brew) are intentionally kept until migration', () => {
-      const header = readFile('src/components/layout/Header.tsx')
+    it('Homebrew tap is intentionally kept until Phase 4 migration', () => {
       const admCli = readFile('src/pages/AdmCli.tsx')
-      expect(header).toContain('github.com/CrystalGamesStudio')
+      // GitHub org link przeniesiony do Fazy 3 (patrz niżej); brew tap + npm scope
+      // zostają do Fazy 4, bo wymagają przeopublikowania pakietów.
       expect(admCli).toContain('CrystalGamesStudio/tap')
     })
   })
@@ -160,6 +160,81 @@ describe('Rebrand guard — pełne logo w nagłówku (Faza 2)', () => {
 
   it('dead empty placeholder crystal-icon.svg is removed from assets', () => {
     expect(existsSync('public/images/crystal-icon.svg')).toBe(false)
+  })
+})
+
+// Rebrand guard — Faza 3: linki GitHub → organizacja CrystalPlatforms (issue #24).
+// Uwaga: docelowo org miał się nazywać „CrystalStudio", ale ta nazwa była zajęta
+// na GitHubie, więc org został przemianowany na „CrystalPlatforms". Brand strony
+// („Crystal Studio") i domena (crystal-studio.dev) pozostają bez zmian — to tylko
+// identyfikator orgu GitHub.
+// Chroni przed regresją: wszystkie klikalne linki github.com/ wskazują nowy org
+// CrystalPlatforms; stary org CrystalGamesStudio w linkach github.com/ znika.
+// Uwaga: raw.githubusercontent (instalatory), npm scope i Homebrew tap zostają
+// do Fazy 4 — guard używa /github\.com\/CrystalGamesStudio/, który nie łapie
+// githubusercontent.com ani brew tap, więc fazy są czysto oddzielone.
+describe('Rebrand guard — linki GitHub → CrystalPlatforms (Faza 3)', () => {
+  describe('Header — link do profilu organizacji', () => {
+    it('points to CrystalPlatforms (not the old CrystalGamesStudio org)', () => {
+      const header = readFile('src/components/layout/Header.tsx')
+      expect(header).toContain('github.com/CrystalPlatforms')
+      expect(header).not.toContain('github.com/CrystalGamesStudio')
+    })
+  })
+
+  describe('Umux — link do repozytorium produktu', () => {
+    it('product page + showcase link point to CrystalPlatforms/umux', () => {
+      const umux = readFile('src/pages/Umux.tsx')
+      const products = readFile('src/pages/Products.tsx')
+      expect(umux).toContain('github.com/CrystalPlatforms/umux')
+      expect(products).toContain('github.com/CrystalPlatforms/umux')
+      expect(umux).not.toContain('github.com/CrystalGamesStudio/umux')
+      expect(products).not.toContain('github.com/CrystalGamesStudio/umux')
+    })
+  })
+
+  describe('ADM-CLI — link do repozytorium produktu', () => {
+    it('product page + showcase link point to CrystalPlatforms/ADM-CLI (not MrCrypto-star)', () => {
+      const admCli = readFile('src/pages/AdmCli.tsx')
+      const products = readFile('src/pages/Products.tsx')
+      expect(admCli).toContain('github.com/CrystalPlatforms/ADM-CLI')
+      expect(products).toContain('github.com/CrystalPlatforms/ADM-CLI')
+      expect(admCli).not.toContain('github.com/MrCrypto-star/ADM-CLI')
+      expect(products).not.toContain('github.com/MrCrypto-star/ADM-CLI')
+    })
+  })
+
+  describe('Egrator — martwa strona usuniętego produktu', () => {
+    it('GITHUB_REPO_OWNER points to CrystalPlatforms (api.github.com)', () => {
+      const egrator = readFile('src/pages/Egrator.tsx')
+      expect(egrator).toContain("GITHUB_REPO_OWNER = 'CrystalPlatforms'")
+      expect(egrator).not.toContain("GITHUB_REPO_OWNER = 'CrystalGamesStudio'")
+    })
+  })
+
+  describe('global leak guard — Faza 3', () => {
+    // /github\.com\/CrystalGamesStudio/ celowo nie łapie raw.githubusercontent.com
+    // (instalatory), CrystalGamesStudio/tap (Homebrew) ani @crystalgames (npm) —
+    // te zostają do Fazy 4. Łapie tylko klikalne linki github.com/<org>.
+    it('no clickable github.com/ link references the old CrystalGamesStudio org', () => {
+      const offenders: string[] = []
+      for (const file of allSourceFiles) {
+        const lines = readFile(file).split('\n')
+        lines.forEach((line, index) => {
+          if (/github\.com\/CrystalGamesStudio/.test(line)) {
+            offenders.push(`${file}:${index + 1} ${line.trim()}`)
+          }
+        })
+      }
+      expect(offenders).toEqual([])
+    })
+
+    it('no source file references the old personal ADM-CLI owner MrCrypto-star', () => {
+      const offenders = allSourceFiles.filter((file) =>
+        readFile(file).includes('MrCrypto-star')
+      )
+      expect(offenders).toEqual([])
+    })
   })
 })
 

@@ -125,7 +125,7 @@ export function Header() {
                 })}
 
                 <a
-                  href="https://github.com/CrystalGamesStudio"
+                  href="https://github.com/CrystalPlatforms"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
@@ -206,7 +206,7 @@ export function Header() {
             })}
 
             <a
-              href="https://github.com/CrystalGamesStudio"
+              href="https://github.com/CrystalPlatforms"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(

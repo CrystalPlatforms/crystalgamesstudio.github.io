@@ -105,7 +105,7 @@ export function Umux() {
               Open-source — built with Tauri v2 (Rust) + React + TypeScript.
             </p>
             <a
-              href="https://github.com/CrystalGamesStudio/umux"
+              href="https://github.com/CrystalPlatforms/umux"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(

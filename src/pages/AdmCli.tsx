@@ -59,7 +59,7 @@ export function AdmCli() {
               Install in seconds, set up your dev environment in minutes.
             </p>
             <a
-              href="https://github.com/MrCrypto-star/ADM-CLI"
+              href="https://github.com/CrystalPlatforms/ADM-CLI"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(

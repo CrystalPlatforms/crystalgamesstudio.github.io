@@ -36,14 +36,14 @@ const apps: Product[] = [
     imageUrl: "/images/adm-preview.png",
     description: "Developer-focused CLI tool that automates environment setup and provides an AI-powered daily assistant for development workflows",
     link: "/products/adm-cli",
-    openLink: "https://github.com/MrCrypto-star/ADM-CLI",
+    openLink: "https://github.com/CrystalPlatforms/ADM-CLI",
   },
   {
     title: "umux",
     imageUrl: "/images/umux-preview.png",
     description: "Open-source terminal workspace manager for Ubuntu (Wayland) — persistent project workspaces, split panels, and desktop notifications when AI CLI tasks finish.",
     link: "/products/umux",
-    openLink: "https://github.com/CrystalGamesStudio/umux",
+    openLink: "https://github.com/CrystalPlatforms/umux",
   },
 ]
 
