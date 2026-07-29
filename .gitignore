@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Lock files — yarn.lock is the source of truth (CI uses yarn).
+# package-lock.json is intentionally ignored so an npm install never recreates it.
+package-lock.json
+
 # TypeScript build info
 *.tsbuildinfo
 
