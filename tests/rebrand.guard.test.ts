@@ -120,11 +120,12 @@ describe('Rebrand guard — Crystal Studio (Faza 1)', () => {
       expect(offenders).toEqual([])
     })
 
-    it('Homebrew tap is intentionally kept until Phase 4 migration', () => {
+    it('Homebrew tap points to CrystalPlatforms/tap (Phase 4 migration done)', () => {
       const admCli = readFile('src/pages/AdmCli.tsx')
-      // GitHub org link przeniesiony do Fazy 3 (patrz niżej); brew tap + npm scope
-      // zostają do Fazy 4, bo wymagają przeopublikowania pakietów.
-      expect(admCli).toContain('CrystalGamesStudio/tap')
+      // Faza 4: tap zmigrowany na CrystalPlatforms/tap (repo homebrew-tap).
+      // Pakiet @crystalplatforms/adm przeopublikowany, instalacja zweryfikowana.
+      expect(admCli).toContain('CrystalPlatforms/tap')
+      expect(admCli).not.toContain('CrystalGamesStudio/tap')
     })
   })
 })
@@ -253,5 +254,51 @@ describe('Products showcase (sekcja products)', () => {
     const exsize = content.productsShowcase.items.find((i) => i.title === 'ExSize')
     expect(exsize).toBeDefined()
     expect(exsize?.buttonLink).toBe('/products/exsize')
+  })
+})
+
+// Rebrand guard — Faza 4: npm + Homebrew → @crystalplatforms / CrystalPlatforms (issue #25).
+// Chroni przed regresją: komendy instalacji ADM-CLI wskazują nowe identyfikatory
+// (npm scope @crystalplatforms, Homebrew tap CrystalPlatforms/tap, instalatory
+// raw.githubusercontent.com/CrystalPlatforms/ADM-CLI). Stare @crystalgames/adm
+// i CrystalGamesStudio/{tap,ADM-CLI} znikają ze strony produktu.
+// UWAGA: YouTube @CrystalGamesStudio-l9z zostaje do Fazy 5 — global leak guard
+// używa wzorców, których ten handle nie spełnia (case-sensitive '@crystalgames'
+// oraz 'CrystalGamesStudio/(tap|ADM-CLI)'), więc fazy są czysto oddzielone.
+describe('Rebrand guard — npm + Homebrew → @crystalplatforms / CrystalPlatforms (Faza 4)', () => {
+  const admCli = () => readFile('src/pages/AdmCli.tsx')
+
+  describe('npm scope', () => {
+    it('uses @crystalplatforms/adm (not the old @crystalgames scope)', () => {
+      expect(admCli()).toContain('@crystalplatforms/adm')
+      expect(admCli()).not.toContain('@crystalgames/adm')
+    })
+  })
+
+  describe('instalatory (curl + PowerShell)', () => {
+    it('point to raw.githubusercontent.com/CrystalPlatforms/ADM-CLI (not CrystalGamesStudio)', () => {
+      expect(admCli()).toContain('raw.githubusercontent.com/CrystalPlatforms/ADM-CLI')
+      expect(admCli()).not.toContain('raw.githubusercontent.com/CrystalGamesStudio/ADM-CLI')
+    })
+  })
+
+  describe('global leak guard — Faza 4', () => {
+    it('no source file references the old @crystalgames npm scope', () => {
+      const offenders = allSourceFiles.filter((f) => readFile(f).includes('@crystalgames'))
+      expect(offenders).toEqual([])
+    })
+
+    it('no source file references the old CrystalGamesStudio install identifiers (tap / ADM-CLI)', () => {
+      const offenders: string[] = []
+      for (const file of allSourceFiles) {
+        const lines = readFile(file).split('\n')
+        lines.forEach((line, index) => {
+          if (/CrystalGamesStudio\/(tap|ADM-CLI)/.test(line)) {
+            offenders.push(`${file}:${index + 1} ${line.trim()}`)
+          }
+        })
+      }
+      expect(offenders).toEqual([])
+    })
   })
 })

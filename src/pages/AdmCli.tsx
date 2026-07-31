@@ -104,7 +104,7 @@ export function AdmCli() {
                   <h3 className="text-lg font-bold text-indigo-200">npm</h3>
                 </div>
                 <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre-wrap break-all">
-                  npm install -g @crystalgames/adm
+                  npm install -g @crystalplatforms/adm
                 </code>
               </div>
 
@@ -122,8 +122,8 @@ export function AdmCli() {
                   <h3 className="text-lg font-bold text-indigo-200">Homebrew (macOS/Linux)</h3>
                 </div>
                 <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre">
-{`brew tap CrystalGamesStudio/tap
-brew install CrystalGamesStudio/tap/adm`}
+{`brew tap CrystalPlatforms/tap
+brew install CrystalPlatforms/tap/adm`}
                 </code>
               </div>
 
@@ -141,7 +141,7 @@ brew install CrystalGamesStudio/tap/adm`}
                   <h3 className="text-lg font-bold text-indigo-200">macOS / Linux (curl)</h3>
                 </div>
                 <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre-wrap break-all">
-                  curl -fsSL https://raw.githubusercontent.com/CrystalGamesStudio/ADM-CLI/main/scripts/installer.sh | sh
+                  curl -fsSL https://raw.githubusercontent.com/CrystalPlatforms/ADM-CLI/main/scripts/installer.sh | sh
                 </code>
               </div>
 
@@ -159,7 +159,7 @@ brew install CrystalGamesStudio/tap/adm`}
                   <h3 className="text-lg font-bold text-indigo-200">Windows (PowerShell)</h3>
                 </div>
                 <code className="block bg-gray-900/70 rounded-lg px-3 py-2 font-mono text-sm text-indigo-200 overflow-x-auto whitespace-pre-wrap break-all">
-                  irm https://raw.githubusercontent.com/CrystalGamesStudio/ADM-CLI/main/scripts/install.ps1 | iex
+                  irm https://raw.githubusercontent.com/CrystalPlatforms/ADM-CLI/main/scripts/install.ps1 | iex
                 </code>
               </div>
             </div>
