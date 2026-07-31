@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import content from '../public/content.json'
+import pkg from '../package.json'
 
 // Rebrand guard — Faza 1: ujednolicenie displayowej nazwy marki na „Crystal Studio"
 // i przełączenie domeny na crystal-studio.dev. Testy chronią przed regresją rebrandu.
@@ -399,6 +400,21 @@ describe('Footer — GitHub w socialach + brak pulsowania ikon', () => {
       const footer = readFile('src/components/layout/Footer.tsx')
       // rok startu 2023 na sztywno + bieżący rok dynamicznie, połączone myślnikiem
       expect(footer).toContain('2023-${new Date().getFullYear()}')
+    })
+  })
+})
+
+// Rebrand guard — Faza 6: rename repo crystalgamesstudio.github.io →
+// crystalplatforms.github.io (issue #42). Repo było legacy-nazwane
+// crystalgamesstudio.github.io (nie pasowało do orgu CrystalPlatforms, więc działało
+// jako project page tylko dzięki custom domenie crystal-studio.dev). Po rename na
+// crystalplatforms.github.io staje się oficjalnym site'em orgu CrystalPlatforms.
+// Chroni przed regresją: package.json deklaruje poprawny kanoniczny URL repo.
+describe('Rebrand guard — rename repo → crystalplatforms.github.io (Faza 6, issue #42)', () => {
+  it('package.json repository.url wskazuje repo po rename', () => {
+    expect(pkg.repository).toEqual({
+      type: 'git',
+      url: 'https://github.com/CrystalPlatforms/crystalplatforms.github.io',
     })
   })
 })

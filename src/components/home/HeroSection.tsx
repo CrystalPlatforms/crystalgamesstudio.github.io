@@ -48,7 +48,7 @@ export function HeroSection() {
                                     {hero.headlineAccent}
                                 </span>
                             </h1>
-                            <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start sm:gap-4">
+                            <div className="mt-5 sm:mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start sm:gap-4">
                                 <div>
                                     {hero.ctaLink.startsWith('/') ? (
                                         <Link
