@@ -186,7 +186,7 @@
           },
           {
             "question": "How can I stay updated with your latest news?",
-            "answer": "Follow us on X (@CrystalStudio64), subscribe to our YouTube channel, or join our WhatsApp community channel for the latest updates and announcements."
+            "answer": "Follow us on X (@CrystalStudio02), subscribe to our YouTube channel, or join our WhatsApp community channel for the latest updates and announcements."
           },
           {
             "question": "Do you participate in game jams or events?",
@@ -381,11 +381,15 @@
     "socialMedia": [
       {
         "icon": "Twitter",
-        "url": "https://x.com/CrystalStudio64"
+        "url": "https://x.com/CrystalStudio02"
       },
       {
         "icon": "Youtube",
-        "url": "https://www.youtube.com/@CrystalGamesStudio-l9z"
+        "url": "https://www.youtube.com/@CrystalStudio2"
+      },
+      {
+        "icon": "Github",
+        "url": "https://github.com/CrystalPlatforms"
       }
     ],
     "copyright": "Crystal Studio.",

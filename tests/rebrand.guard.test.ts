@@ -11,8 +11,9 @@ import content from '../public/content.json'
 const OLD_NAME = /CrystalGames|Crystal\s+Games?\s+Studio/i
 
 // Łapie tylko DISPLAYOWĄ starą nazwę (ze spacją przed "Studio"). Celowo NIE łapie
-// camelCase identyfikatorów "CrystalGamesStudio" (URL-e GitHub/npm/brew, handle
-// YouTube, GITHUB_REPO_OWNER) — te zostają do migracji w Fazach 3–5.
+// camelCase identyfikatorów "CrystalGamesStudio" (historyczne URL-e GitHub/npm/brew,
+// handle YouTube, GITHUB_REPO_OWNER) — zostały zmigrowane w Fazach 3–5 (sekcje guard
+// poniżej), ale OLD_DISPLAY celowo ich nie łapie, by nie kolidować z guardami faz.
 const OLD_DISPLAY = /CrystalGames\s+Studio|Crystal\s+Games?\s+Studio/i
 
 // Czyta plik jako tekst (ścieżki względem cwd = root projektu).
@@ -262,9 +263,9 @@ describe('Products showcase (sekcja products)', () => {
 // (npm scope @crystalplatforms, Homebrew tap CrystalPlatforms/tap, instalatory
 // raw.githubusercontent.com/CrystalPlatforms/ADM-CLI). Stare @crystalgames/adm
 // i CrystalGamesStudio/{tap,ADM-CLI} znikają ze strony produktu.
-// UWAGA: YouTube @CrystalGamesStudio-l9z zostaje do Fazy 5 — global leak guard
-// używa wzorców, których ten handle nie spełnia (case-sensitive '@crystalgames'
-// oraz 'CrystalGamesStudio/(tap|ADM-CLI)'), więc fazy są czysto oddzielone.
+// HISTORYCZNE: w Fazie 4 stary handle YouTube (@CrystalGamesStudio-l9z) jeszcze
+// zostawał — migrowany w Fazie 5 (issue #26). Guard Fazy 4 używał wzorców, których
+// ten handle nie spełniał, więc fazy były czysto oddzielone.
 describe('Rebrand guard — npm + Homebrew → @crystalplatforms / CrystalPlatforms (Faza 4)', () => {
   const admCli = () => readFile('src/pages/AdmCli.tsx')
 
@@ -299,6 +300,105 @@ describe('Rebrand guard — npm + Homebrew → @crystalplatforms / CrystalPlatfo
         })
       }
       expect(offenders).toEqual([])
+    })
+  })
+})
+
+// Rebrand guard — Faza 5: YouTube → nowy handle @CrystalStudio2 (issue #26).
+// Chroni przed regresją: linki YouTube (stopka + strona kontaktu) wskazują nowy
+// handle @CrystalStudio2; stary @CrystalGamesStudio-l9z znika ze wszystkich źródeł.
+describe('Rebrand guard — YouTube → @CrystalStudio2 (Faza 5)', () => {
+  describe('Contact — link do kanału YouTube', () => {
+    it('points to @CrystalStudio2 (not the old @CrystalGamesStudio-l9z)', () => {
+      const contact = readFile('src/pages/Contact.tsx')
+      expect(contact).toContain('https://www.youtube.com/@CrystalStudio2')
+      expect(contact).not.toContain('@CrystalGamesStudio-l9z')
+    })
+  })
+
+  describe('footer — link do kanału YouTube (content.json)', () => {
+    it('points to @CrystalStudio2 (not the old @CrystalGamesStudio-l9z)', () => {
+      const youtube = content.footer.socialMedia.find((s) => s.icon === 'Youtube')
+      expect(youtube).toBeDefined()
+      expect(youtube?.url).toBe('https://www.youtube.com/@CrystalStudio2')
+    })
+  })
+
+  describe('global leak guard — Faza 5', () => {
+    it('no source file references the old YouTube handle @CrystalGamesStudio-l9z', () => {
+      const offenders = allSourceFiles.filter((f) =>
+        readFile(f).includes('@CrystalGamesStudio-l9z')
+      )
+      expect(offenders).toEqual([])
+    })
+  })
+})
+
+// Rebrand guard — X (Twitter) → nowy handle @CrystalStudio02 (dodatkowy wymóg
+// właściciela poza zakresem issue #26; plan Fazy 5 zakładał że X zostaje, ale
+// właściciel zmienił handle). Chroni przed regresją: wszystkie linki i wzmianki X
+// (Contact, stopka, FAQ) wskazują @CrystalStudio02; stary @CrystalStudio64 znika.
+describe('Rebrand guard — X (Twitter) → @CrystalStudio02', () => {
+  describe('Contact — link do profilu X', () => {
+    it('points to @CrystalStudio02 (not the old @CrystalStudio64)', () => {
+      const contact = readFile('src/pages/Contact.tsx')
+      expect(contact).toContain('https://x.com/CrystalStudio02')
+      expect(contact).not.toContain('x.com/CrystalStudio64')
+    })
+  })
+
+  describe('footer — link do profilu X (content.json)', () => {
+    it('points to @CrystalStudio02 (not the old @CrystalStudio64)', () => {
+      const x = content.footer.socialMedia.find((s) => s.icon === 'Twitter')
+      expect(x).toBeDefined()
+      expect(x?.url).toBe('https://x.com/CrystalStudio02')
+    })
+  })
+
+  describe('FAQ — wzmianka o handle X (content.json)', () => {
+    it('uses @CrystalStudio02 (not the old @CrystalStudio64)', () => {
+      const faqTexts: string[] = []
+      for (const category of content.faq.categories) {
+        for (const item of category.items) {
+          faqTexts.push(item.question, item.answer)
+        }
+      }
+      const joined = faqTexts.join('\n')
+      expect(joined).toContain('@CrystalStudio02')
+      expect(joined).not.toContain('@CrystalStudio64')
+    })
+  })
+
+  describe('global leak guard — X', () => {
+    it('no source file references the old X handle x.com/CrystalStudio64', () => {
+      const offenders = allSourceFiles.filter((f) => readFile(f).includes('x.com/CrystalStudio64'))
+      expect(offenders).toEqual([])
+    })
+  })
+})
+
+// Footer — ikona GitHub w socialach + wyłączone pulsowanie ikon social.
+describe('Footer — GitHub w socialach + brak pulsowania ikon', () => {
+  describe('footer — link do GitHub (content.json)', () => {
+    it('includes a GitHub social link pointing to CrystalPlatforms', () => {
+      const github = content.footer.socialMedia.find((s) => s.icon === 'Github')
+      expect(github).toBeDefined()
+      expect(github?.url).toBe('https://github.com/CrystalPlatforms')
+    })
+  })
+
+  describe('ikony social — bez pulsowania', () => {
+    it('social icons do not use glowAnimation (no infinite glow pulse)', () => {
+      const footer = readFile('src/components/layout/Footer.tsx')
+      expect(footer).not.toContain('glowAnimation')
+    })
+  })
+
+  describe('footer — zakres lat copyright', () => {
+    it('shows "© 2023-<current year>" range (static 2023 start + dynamic current year)', () => {
+      const footer = readFile('src/components/layout/Footer.tsx')
+      // rok startu 2023 na sztywno + bieżący rok dynamicznie, połączone myślnikiem
+      expect(footer).toContain('2023-${new Date().getFullYear()}')
     })
   })
 })

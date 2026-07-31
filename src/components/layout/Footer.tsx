@@ -2,7 +2,7 @@ import { useContentData } from '../../hooks/useContentData'
 import { ContentData } from '../../types/content'
 import { getIconComponent } from '../../utils/helpers'
 import { cn } from '../../utils/helpers'
-import { glowAnimation, pixelBorder } from '../../utils/game-effects'
+import { pixelBorder } from '../../utils/game-effects'
 import { Link } from 'react-router'
 
 export function Footer() {
@@ -71,8 +71,7 @@ export function Footer() {
                   key={index} 
                   href={item.url} 
                   className={cn(
-                    "text-indigo-400 hover:text-indigo-300 transition-colors",
-                    glowAnimation
+                    "text-indigo-400 hover:text-indigo-300 transition-colors"
                   )}
                 >
                   <span className="sr-only">{item.icon}</span>
@@ -82,7 +81,7 @@ export function Footer() {
             })}
           </div>
           <p className="mt-8 text-base text-indigo-400/60 md:mt-0 md:order-1">
-            {`© ${new Date().getFullYear()}  `}
+            {`© 2023-${new Date().getFullYear()}  `}
             {footer.copyrightLink.startsWith('/') ? (
               <Link 
                 to={footer.copyrightLink} 

@@ -95,7 +95,7 @@ export function Contact() {
               {/* Social Media */}
               <div className="space-y-4">
                 <a
-                  href="https://x.com/CrystalStudio64"
+                  href="https://x.com/CrystalStudio02"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
@@ -109,7 +109,7 @@ export function Contact() {
                 </a>
                 
                 <a
-                  href="https://www.youtube.com/@CrystalGamesStudio-l9z"
+                  href="https://www.youtube.com/@CrystalStudio2"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
