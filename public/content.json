@@ -87,6 +87,22 @@
       }
     ]
   },
+  "games": {
+    "items": [
+      {
+        "slug": "schools-out",
+        "title": "School's Out!",
+        "src": "https://crystalplatforms.github.io/schools-out/",
+        "imageUrl": "/images/schoolsout.png"
+      },
+      {
+        "slug": "coin-collector",
+        "title": "Coin Collector",
+        "src": "https://crystalplatforms.github.io/coin-collector/",
+        "imageUrl": "/images/coincollector.png"
+      }
+    ]
+  },
   "socialProof": {
     "headline": "What Our Community Says",
     "items": [

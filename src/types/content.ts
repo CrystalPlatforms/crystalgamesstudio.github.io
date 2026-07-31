@@ -49,6 +49,20 @@ export interface ProductsShowcaseContent {
   items: ProductItem[]
 }
 
+// Gra osadzana na własnej trasie (np. /schools-out) przez iframe.
+// `src` to URL wdrożenia gry (GitHub Pages) — źródłem prawdy jest repo gry,
+// landing page tylko je osadza.
+export interface Game {
+  slug: string
+  title: string
+  src: string
+  imageUrl?: string
+}
+
+export interface GamesContent {
+  items: Game[]
+}
+
 export interface SocialProofItem {
   icon: string
   quote: string
@@ -121,6 +135,7 @@ export interface ContentData {
   hero: HeroContent
   features: FeaturesContent
   productsShowcase: ProductsShowcaseContent
+  games: GamesContent
   socialProof: SocialProofContent
   faq: FAQContent
   footer: FooterContent
